@@ -54,6 +54,20 @@ my-blog/
 > `YYYY-MM-DD-title.md` in there, add a bit of front matter, and Jekyll will
 > turn it into a blog post.
 
+## Adding Images
+
+Drop image files into `assets/images/posts/` and reference them from any
+post with standard Markdown:
+
+```markdown
+![Alt text]({% raw %}{{ "/assets/images/posts/your-file.png" | relative_url }}{% endraw %})
+```
+
+The result renders inline with rounded corners and a max-width that fits
+the column:
+
+![Placeholder showing where blog post images live]({{ "/assets/images/posts/placeholder.svg" | relative_url }})
+
 ## What's Next?
 
 Once you have the basics down, explore features like collections, custom
