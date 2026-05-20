@@ -55,11 +55,11 @@ exclude:
 #   3. Go to https://giscus.app, paste the repo, pick category "Announcements"
 #      (or any category of type "Announcement"), and copy the IDs below.
 giscus:
-  enabled: false
+  enabled: true
   repo: "ryqdev/ryqdev.github.io"
-  repo_id: ""           # data-repo-id from giscus.app
+  repo_id: "R_kgDOSisgBw"
   category: "Announcements"
-  category_id: ""       # data-category-id from giscus.app
+  category_id: "DIC_kwDOSisgB84C9eAN"
   mapping: "pathname"
   reactions_enabled: "1"
   emit_metadata: "0"
