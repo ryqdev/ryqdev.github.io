@@ -84,6 +84,16 @@
     ".prose pre, .prose div.highlight, .prose figure.highlight"
   );
   blocks.forEach(function (block) {
+    // Rouge wraps code in <div class="highlight"><pre>…</pre></div>; the
+    // selector matches both layers, so skip the inner <pre> when an outer
+    // wrapper exists — that wrapper will get the button.
+    if (
+      block.tagName === "PRE" &&
+      block.parentElement &&
+      block.parentElement.matches("div.highlight, figure.highlight")
+    ) {
+      return;
+    }
     if (block.querySelector(":scope > .copy-btn")) return;
     var btn = document.createElement("button");
     btn.className = "copy-btn";
