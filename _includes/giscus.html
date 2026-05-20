@@ -1,0 +1,33 @@
+{% assign g = site.giscus %}
+<div class="giscus-container">
+  {% if g.enabled and g.repo_id != "" and g.category_id != "" %}
+    <script
+      src="https://giscus.app/client.js"
+      data-repo="{{ g.repo }}"
+      data-repo-id="{{ g.repo_id }}"
+      data-category="{{ g.category }}"
+      data-category-id="{{ g.category_id }}"
+      data-mapping="{{ g.mapping | default: 'pathname' }}"
+      data-strict="0"
+      data-reactions-enabled="{{ g.reactions_enabled | default: '1' }}"
+      data-emit-metadata="{{ g.emit_metadata | default: '0' }}"
+      data-input-position="{{ g.input_position | default: 'top' }}"
+      data-theme="preferred_color_scheme"
+      data-lang="{{ g.lang | default: 'en' }}"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async></script>
+  {% else %}
+    <div class="giscus-placeholder">
+      <p><strong>Comments are not configured yet.</strong></p>
+      <p>
+        To turn on this guestbook, enable GitHub Discussions on
+        <code>{{ g.repo | default: site.github.repository_nwo }}</code>,
+        install the <a href="https://github.com/apps/giscus" rel="noopener">giscus app</a>,
+        visit <a href="https://giscus.app" rel="noopener">giscus.app</a> to grab the
+        <code>repo_id</code> and <code>category_id</code>, then drop them into
+        <code>_config.yml</code> and set <code>giscus.enabled: true</code>.
+      </p>
+    </div>
+  {% endif %}
+</div>

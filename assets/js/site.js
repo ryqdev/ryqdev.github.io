@@ -12,6 +12,16 @@
     }
   }
 
+  function syncGiscusTheme() {
+    var isDark = document.documentElement.classList.contains("dark");
+    var frame = document.querySelector("iframe.giscus-frame");
+    if (!frame || !frame.contentWindow) return;
+    frame.contentWindow.postMessage(
+      { giscus: { setConfig: { theme: isDark ? "dark" : "light" } } },
+      "https://giscus.app"
+    );
+  }
+
   var toggleBtn = document.getElementById("theme-toggle");
   if (toggleBtn) {
     toggleBtn.addEventListener("click", function () {
@@ -21,9 +31,16 @@
         localStorage.setItem("theme", next ? "dark" : "light");
       } catch (e) {}
       syncThemeIcons();
+      syncGiscusTheme();
     });
   }
   syncThemeIcons();
+
+  // When giscus first loads, push the current theme over so it matches.
+  window.addEventListener("message", function (event) {
+    if (event.origin !== "https://giscus.app") return;
+    if (event.data && event.data.giscus) syncGiscusTheme();
+  });
 
   // ---------- Mobile menu ----------
   var menuBtn = document.getElementById("mobile-menu-toggle");
