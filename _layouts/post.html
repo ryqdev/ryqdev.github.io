@@ -25,4 +25,11 @@ layout: default
   <div class="prose">
     {{ content }}
   </div>
+
+  {% unless page.comments == false %}
+    <section class="post-comments">
+      <h2 class="post-comments__title">Comments</h2>
+      {% include giscus.html %}
+    </section>
+  {% endunless %}
 </article>

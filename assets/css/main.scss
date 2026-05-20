@@ -561,8 +561,21 @@ a {
 
 /* ---------- Guestbook (giscus) ---------- */
 
+.post-comments {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.post-comments__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 .giscus-container {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .giscus,

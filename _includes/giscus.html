@@ -1,6 +1,10 @@
 {% assign g = site.giscus %}
+{% if page.comments == false %}
+  {% assign giscus_skip = true %}
+{% endif %}
 <div class="giscus-container">
-  {% if g.enabled and g.repo_id != "" and g.category_id != "" %}
+  {% if giscus_skip %}
+  {% elsif g.enabled and g.repo_id != "" and g.category_id != "" %}
     <div
       id="giscus-mount"
       data-repo="{{ g.repo }}"
