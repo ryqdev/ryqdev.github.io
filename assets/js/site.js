@@ -74,29 +74,6 @@
   }
   mountGiscus();
 
-  // ---------- Mobile menu ----------
-  var menuBtn = document.getElementById("mobile-menu-toggle");
-  var backdrop = document.getElementById("mobile-menu-backdrop");
-  var sidebar = document.getElementById("mobile-sidebar");
-  var iconOpen = document.getElementById("mobile-menu-icon-open");
-  var iconClose = document.getElementById("mobile-menu-icon-close");
-
-  function setMenu(open) {
-    document.body.classList.toggle("mobile-menu-open", open);
-    if (iconOpen) iconOpen.style.display = open ? "none" : "block";
-    if (iconClose) iconClose.style.display = open ? "block" : "none";
-  }
-
-  if (menuBtn) {
-    menuBtn.addEventListener("click", function () {
-      setMenu(!document.body.classList.contains("mobile-menu-open"));
-    });
-  }
-  if (backdrop) backdrop.addEventListener("click", function () { setMenu(false); });
-  if (sidebar) sidebar.addEventListener("click", function (e) {
-    if (e.target.closest("a")) setMenu(false);
-  });
-
   // ---------- Copy-code buttons ----------
   var COPY_SVG =
     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';

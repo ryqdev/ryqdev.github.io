@@ -31,16 +31,12 @@
   </head>
   <body>
     {% include top-nav.html %}
-    {% include mobile-menu.html %}
 
-    <div class="layout">
-      {% include sidebar.html mobile=false %}
-      <main class="main">
-        <div class="main__inner">
-          {{ content }}
-        </div>
-      </main>
-    </div>
+    <main class="main">
+      <div class="main__inner">
+        {{ content }}
+      </div>
+    </main>
 
     <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
   </body>
