@@ -36,11 +36,43 @@
   }
   syncThemeIcons();
 
-  // When giscus first loads, push the current theme over so it matches.
+  // When giscus sends any message (load, resize, etc), re-assert our theme.
   window.addEventListener("message", function (event) {
     if (event.origin !== "https://giscus.app") return;
     if (event.data && event.data.giscus) syncGiscusTheme();
   });
+
+  // ---------- Mount giscus with the correct theme from the start ----------
+  function mountGiscus() {
+    var mount = document.getElementById("giscus-mount");
+    if (!mount || mount.dataset.mounted === "1") return;
+    mount.dataset.mounted = "1";
+
+    var isDark = document.documentElement.classList.contains("dark");
+    var script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    script.setAttribute("data-loading", "lazy");
+    script.setAttribute("data-strict", "0");
+    script.setAttribute("data-theme", isDark ? "dark" : "light");
+
+    var copy = [
+      "repo", "repoId", "category", "categoryId", "mapping",
+      "reactionsEnabled", "emitMetadata", "inputPosition", "lang"
+    ];
+    copy.forEach(function (key) {
+      var v = mount.dataset[key];
+      if (v == null) return;
+      var attr = "data-" + key.replace(/[A-Z]/g, function (c) {
+        return "-" + c.toLowerCase();
+      });
+      script.setAttribute(attr, v);
+    });
+
+    mount.appendChild(script);
+  }
+  mountGiscus();
 
   // ---------- Mobile menu ----------
   var menuBtn = document.getElementById("mobile-menu-toggle");

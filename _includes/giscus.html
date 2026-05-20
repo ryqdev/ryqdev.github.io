@@ -1,22 +1,17 @@
 {% assign g = site.giscus %}
 <div class="giscus-container">
   {% if g.enabled and g.repo_id != "" and g.category_id != "" %}
-    <script
-      src="https://giscus.app/client.js"
+    <div
+      id="giscus-mount"
       data-repo="{{ g.repo }}"
       data-repo-id="{{ g.repo_id }}"
       data-category="{{ g.category }}"
       data-category-id="{{ g.category_id }}"
       data-mapping="{{ g.mapping | default: 'pathname' }}"
-      data-strict="0"
       data-reactions-enabled="{{ g.reactions_enabled | default: '1' }}"
       data-emit-metadata="{{ g.emit_metadata | default: '0' }}"
       data-input-position="{{ g.input_position | default: 'top' }}"
-      data-theme="preferred_color_scheme"
-      data-lang="{{ g.lang | default: 'en' }}"
-      data-loading="lazy"
-      crossorigin="anonymous"
-      async></script>
+      data-lang="{{ g.lang | default: 'en' }}"></div>
   {% else %}
     <div class="giscus-placeholder">
       <p><strong>Comments are not configured yet.</strong></p>
