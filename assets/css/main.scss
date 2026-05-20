@@ -393,6 +393,42 @@ a {
   font-weight: 600;
 }
 
+/* ---------- Side-floated images ---------- */
+
+.prose img.float-right,
+.prose img.float-left {
+  max-width: 50%;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose img.float-right {
+  float: right;
+  margin-left: 1.5rem;
+}
+
+.prose img.float-left {
+  float: left;
+  margin-right: 1.5rem;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose hr {
+  clear: both;
+}
+
+@media (max-width: 640px) {
+  .prose img.float-right,
+  .prose img.float-left {
+    float: none;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 /* ---------- Callouts ---------- */
 
 .callout {

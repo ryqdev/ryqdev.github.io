@@ -68,6 +68,26 @@ the column:
 
 ![Placeholder showing where blog post images live]({{ "/assets/images/posts/placeholder.svg" | relative_url }})
 
+### Side-floated images
+
+If you want text to wrap around an image, add `{:.float-right}` (or
+`{:.float-left}`) after the Markdown image to attach a CSS class:
+
+```markdown
+![Alt text](/assets/images/posts/your-file.png){:.float-right}
+```
+
+![Side image example]({{ "/assets/images/posts/side-placeholder.svg" | relative_url }}){:.float-right}
+
+Notice how this paragraph is wrapping around the image to the right.
+Float-aligned images are great for portraits, diagrams, and screenshots
+that are narrower than the column — they let you keep more text visible
+on screen at once. The image caps at 50% of the column width on desktop
+and falls back to full-width on narrow phones so the layout never breaks.
+Headings and horizontal rules automatically clear the float so the next
+section always starts on a fresh line. Try `{:.float-left}` to flip it
+the other way.
+
 ## What's Next?
 
 Once you have the basics down, explore features like collections, custom
