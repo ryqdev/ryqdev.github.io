@@ -1,0 +1,14 @@
+---
+layout: default
+title: Posts
+---
+
+<h1 class="page-title">Posts</h1>
+<p class="page-lead">Thoughts on web development, tools, and technology.</p>
+
+<div class="post-list">
+  {% assign sorted_posts = site.posts | sort: "date" | reverse %}
+  {% for post in sorted_posts %}
+    {% include post-card.html post=post %}
+  {% endfor %}
+</div>

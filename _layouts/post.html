@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<article>
+  <a href="{{ '/' | relative_url }}" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+    Back to posts
+  </a>
+
+  <h1 class="post-header__title">{{ page.title }}</h1>
+
+  <div class="post-header__meta">
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    {% if page.tags and page.tags.size > 0 %}
+      <span class="post-header__dot">·</span>
+      {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+</article>

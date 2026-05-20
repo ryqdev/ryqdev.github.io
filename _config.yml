@@ -1,0 +1,49 @@
+title: "ryqdev's Blog"
+description: "Personal blog about web development, tools, and technology."
+author: ryqdev
+url: "https://ryqdev.github.io"
+baseurl: ""
+
+permalink: /posts/:slug/
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'hljs'
+    block:
+      line_numbers: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+sass:
+  style: compressed
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      section: "Posts"
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+collections:
+  posts:
+    output: true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - README.md
