@@ -6,7 +6,7 @@ tags: ["Jekyll", "GitHub Pages"]
 section: "Guides"
 slug: getting-started-with-jekyll
 ---
-
+![placeholder.png](/assets/images/posts/placeholder.png)
 ## What is Jekyll?
 
 Jekyll is a static site generator written in Ruby. It takes Markdown files,
