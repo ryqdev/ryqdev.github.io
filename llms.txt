@@ -1,0 +1,19 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# ryqdev's Blog
+
+> Personal blog by ryqdev about web development, tools, and technology. Built with Jekyll and hosted on GitHub Pages.
+
+## About
+- [About](https://ryqdev.github.io/about/): Short introduction to the author and the blog.
+
+## Posts
+- [Getting Started with Jekyll](https://ryqdev.github.io/posts/getting-started-with-jekyll/): A beginner's guide to building a personal blog with Jekyll and GitHub Pages — covers installation, project structure, adding posts, and embedding images.
+
+## Optional
+- [Home](https://ryqdev.github.io/): Site index listing all posts.
+- [RSS Feed](https://ryqdev.github.io/feed.xml): Atom feed of all posts.
+- [Sitemap](https://ryqdev.github.io/sitemap.xml): Full URL list for crawlers.
+- [Source](https://github.com/ryqdev/ryqdev.github.io): GitHub repository for this site.
