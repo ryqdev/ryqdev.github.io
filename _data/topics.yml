@@ -1,14 +1,20 @@
 en:
-  title: Topics
+  title: All tags
   intro: Explore articles by subject.
   all: All posts
   browse: Browse by topic
+  filter: Filter by tag
+  results: "{count} articles"
+  one_result: "1 article"
   count: articles
   url: /topics/
 zh-CN:
-  title: 主题
+  title: 所有标签
   intro: 从感兴趣的主题开始阅读。
   all: 全部文章
   browse: 按主题浏览
+  filter: 按标签筛选
+  results: "{count} 篇文章"
+  one_result: "1 篇文章"
   count: 篇文章
   url: /zh/topics/

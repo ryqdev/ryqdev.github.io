@@ -1,4 +1,4 @@
-<article class="post-card">
+<article class="post-card" data-post-tags="{{ include.post.tags | jsonify | escape }}">
   {% if include.post.tags and include.post.tags.size > 0 %}
     <div class="post-card__tags">
       {% for tag in include.post.tags %}

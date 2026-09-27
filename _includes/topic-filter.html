@@ -2,10 +2,25 @@
 {% assign topic_posts = site.posts | where: 'lang', current_lang %}
 {% assign topic_names = topic_posts | map: 'tags' | uniq | sort_natural %}
 <link rel="stylesheet" href="{{ '/assets/css/topics.css' | relative_url }}">
-<nav class="topic-filter" aria-label="{{ topic_labels.browse }}">
-  <a class="tag topic-link" href="{{ labels.home_url | relative_url }}"{% if page.translation_key == 'home' %} aria-current="page"{% endif %}>{{ topic_labels.all }}</a>
-  {% for topic_name in topic_names %}
-    {% include topic-link.html tag=topic_name %}
-  {% endfor %}
-  <a class="topic-filter__index" href="{{ topic_labels.url | relative_url }}"{% if page.translation_key == 'topics' %} aria-current="page"{% endif %}>{{ topic_labels.title }} ↗</a>
-</nav>
+{% if page.translation_key == 'home' %}
+  <div class="post-filter" hidden data-post-filter>
+    <div class="topic-filter" role="group" aria-label="{{ topic_labels.filter }}">
+      <button class="tag topic-filter__button" type="button" data-filter-tag="" aria-pressed="true" aria-controls="post-list">{{ topic_labels.all }} <span>{{ topic_posts.size }}</span></button>
+      {% for topic_name in topic_names %}
+        {% assign topic_count = topic_posts | where_exp: 'entry', 'entry.tags contains topic_name' | size %}
+        <button class="tag topic-filter__button" type="button" data-filter-tag="{{ topic_name | escape }}" aria-pressed="false" aria-controls="post-list">{{ topic_name | escape }} <span>{{ topic_count }}</span></button>
+      {% endfor %}
+    </div>
+    <p class="post-filter__status" role="status" aria-live="polite" aria-atomic="true" data-count-label="{{ topic_labels.results }}" data-one-label="{{ topic_labels.one_result }}"></p>
+  </div>
+  <noscript><p class="topic-fallback"><a href="{{ topic_labels.url | relative_url }}">{{ topic_labels.browse }}</a></p></noscript>
+  <script src="{{ '/assets/js/post-filter.js' | relative_url }}" defer></script>
+{% else %}
+  <nav class="topic-filter" aria-label="{{ topic_labels.browse }}">
+    <a class="tag topic-link" href="{{ labels.home_url | relative_url }}">{{ topic_labels.all }}</a>
+    {% for topic_name in topic_names %}
+      {% assign topic_id = topic_name | url_encode | prepend: 'topic-' %}
+      <a class="tag topic-link" href="#{{ topic_id | url_encode }}">{{ topic_name | escape }}</a>
+    {% endfor %}
+  </nav>
+{% endif %}
