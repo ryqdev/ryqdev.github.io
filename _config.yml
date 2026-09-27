@@ -1,6 +1,7 @@
 title: "ryqdev's Blog"
 description: "Personal blog about web development, tools, and technology."
 author: ryqdev
+lang: en
 url: "https://ryqdev.github.io"
 baseurl: ""
 
@@ -30,6 +31,7 @@ defaults:
       type: posts
     values:
       layout: post
+      lang: en
       section: "Posts"
   - scope:
       path: ""

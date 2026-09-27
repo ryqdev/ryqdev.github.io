@@ -1,0 +1,74 @@
+en:
+  home: Home
+  home_url: /
+  about: About
+  about_url: /about/
+  navigation: Main navigation
+  switch_language: Switch to Chinese
+  posts: Posts
+  back_to_posts: Back to posts
+  comments: Comments
+  comments_unavailable: Comments are not available yet.
+  date_format: "%B %-d, %Y"
+  giscus_lang: en
+  toggle_theme: Toggle theme
+  search:
+    label: Search
+    title: Search articles
+    placeholder: Search titles and article content…
+    close: Close search
+    scope: English articles
+    choose: to select
+    open: to open
+    dismiss: to close
+    retry: Try again
+  js:
+    light_mode: Switch to light mode
+    dark_mode: Switch to dark mode
+    copy: Copy code
+    copied: Copied!
+    search:
+      recent: Recent articles
+      loading: Loading articles…
+      count: "{count} articles found"
+      one: 1 article found
+      empty: No articles found
+      empty_hint: Try another keyword, or switch the site language.
+      error: Articles could not be loaded. Please try again.
+zh-CN:
+  home: 首页
+  home_url: /zh/
+  about: 关于
+  about_url: /zh/about/
+  navigation: 主导航
+  switch_language: 切换到英文
+  posts: 文章
+  back_to_posts: 返回文章列表
+  comments: 评论
+  comments_unavailable: 评论暂未开放。
+  date_format: "%Y 年 %-m 月 %-d 日"
+  giscus_lang: zh-CN
+  toggle_theme: 切换明暗主题
+  search:
+    label: 搜索
+    title: 搜索文章
+    placeholder: 搜索文章标题或正文…
+    close: 关闭搜索
+    scope: 中文文章
+    choose: 选择
+    open: 打开
+    dismiss: 关闭
+    retry: 重试
+  js:
+    light_mode: 切换到浅色模式
+    dark_mode: 切换到深色模式
+    copy: 复制代码
+    copied: 已复制！
+    search:
+      recent: 最近文章
+      loading: 正在加载文章…
+      count: "找到 {count} 篇文章"
+      one: 找到 1 篇文章
+      empty: 没有找到相关文章
+      empty_hint: 试试其他关键词，或切换网站语言搜索。
+      error: 文章加载失败，请重试。

@@ -1,0 +1,54 @@
+{%- assign related_labels = site.data.related_posts[current_lang] -%}
+{%- assign related_pool = site.posts | where: 'lang', current_lang | sort: 'date' | reverse -%}
+{%- assign selected_posts = '' | split: ',' -%}
+{%- assign excluded_urls = page.url | split: ',' -%}
+{%- for key in page.related_posts -%}
+  {%- assign curated_matches = related_pool | where: 'translation_key', key -%}
+  {%- for candidate in curated_matches -%}
+    {%- unless excluded_urls contains candidate.url -%}
+      {%- assign selected_posts = selected_posts | push: candidate -%}
+      {%- assign excluded_urls = excluded_urls | push: candidate.url -%}
+      {%- break -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  {%- if selected_posts.size >= 3 -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
+{%- for slot in (1..3) -%}
+  {%- if selected_posts.size >= 3 -%}{%- break -%}{%- endif -%}
+  {%- assign best_post = nil -%}
+  {%- assign best_score = -1 -%}
+  {%- for candidate in related_pool -%}
+    {%- unless excluded_urls contains candidate.url -%}
+      {%- unless page.translation_key and candidate.translation_key == page.translation_key -%}
+        {%- assign score = 0 -%}
+        {%- for tag in page.tags -%}
+          {%- if candidate.tags contains tag -%}{%- assign score = score | plus: 1 -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if score > best_score -%}
+          {%- assign best_post = candidate -%}
+          {%- assign best_score = score -%}
+        {%- endif -%}
+      {%- endunless -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  {%- if best_post -%}
+    {%- assign selected_posts = selected_posts | push: best_post -%}
+    {%- assign excluded_urls = excluded_urls | push: best_post.url -%}
+  {%- endif -%}
+{%- endfor -%}
+{% if selected_posts.size > 0 %}
+  <link rel="stylesheet" href="{{ '/assets/css/related-posts.css' | relative_url }}">
+  <section class="related-posts" aria-labelledby="related-posts-title">
+    <h2 id="related-posts-title">{{ related_labels.title }}</h2>
+    <p class="related-posts__intro">{{ related_labels.intro }}</p>
+    <ul>
+      {% for related_post in selected_posts %}
+        <li><a href="{{ related_post.url | relative_url }}">
+          <h3>{{ related_post.title | escape }}</h3>
+          {% if related_post.description %}<p>{{ related_post.description | escape }}</p>{% endif %}
+          {% include post-date.html date=related_post.date %}
+        </a></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}

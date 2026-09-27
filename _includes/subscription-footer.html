@@ -1,0 +1,11 @@
+{% assign subscription = site.data.subscriptions[current_lang] %}
+<link rel="stylesheet" href="{{ '/assets/css/subscriptions.css' | relative_url }}">
+<footer class="subscription-footer">
+  <div class="subscription-footer__inner">
+    <div><h2>{{ subscription.title }}</h2><p>{{ subscription.hint }}</p></div>
+    <nav aria-label="RSS">
+      <a href="{{ '/feed/zh.xml' | relative_url }}" type="application/atom+xml" hreflang="zh-CN" lang="zh-CN">中文 RSS <span aria-hidden="true">↗</span></a>
+      <a href="{{ '/feed/en.xml' | relative_url }}" type="application/atom+xml" hreflang="en" lang="en">English RSS <span aria-hidden="true">↗</span></a>
+    </nav>
+  </div>
+</footer>

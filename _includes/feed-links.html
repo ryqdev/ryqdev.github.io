@@ -1,0 +1,4 @@
+{% assign subscription = site.data.subscriptions[current_lang] %}
+{% assign other_subscription = site.data.subscriptions[subscription.other_lang] %}
+<link rel="alternate" type="application/atom+xml" title="{{ subscription.feed_title | escape }}" hreflang="{{ current_lang }}" href="{{ subscription.feed_url | absolute_url }}">
+<link rel="alternate" type="application/atom+xml" title="{{ other_subscription.feed_title | escape }}" hreflang="{{ subscription.other_lang }}" href="{{ other_subscription.feed_url | absolute_url }}">

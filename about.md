@@ -1,6 +1,8 @@
 ---
 layout: page
 title: About
+lang: en
+translation_key: about
 permalink: /about/
 description: About ryqdev and this blog.
 ---

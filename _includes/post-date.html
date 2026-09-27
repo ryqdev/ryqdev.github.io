@@ -1,0 +1,1 @@
+<time{% if include.class %} class="{{ include.class }}"{% endif %} datetime="{{ include.date | date_to_xmlschema }}">{{ include.date | date: labels.date_format }}</time>

@@ -1,13 +1,6 @@
 ---
-layout: default
+layout: home
 title: Posts
+lang: en
+translation_key: home
 ---
-
-<h1 class="page-title">Posts</h1>
-
-<div class="post-list">
-  {% assign sorted_posts = site.posts | sort: "date" | reverse %}
-  {% for post in sorted_posts %}
-    {% include post-card.html post=post %}
-  {% endfor %}
-</div>

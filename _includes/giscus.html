@@ -15,18 +15,10 @@
       data-reactions-enabled="{{ g.reactions_enabled | default: '1' }}"
       data-emit-metadata="{{ g.emit_metadata | default: '0' }}"
       data-input-position="{{ g.input_position | default: 'top' }}"
-      data-lang="{{ g.lang | default: 'en' }}"></div>
+      data-lang="{{ labels.giscus_lang }}"></div>
   {% else %}
     <div class="giscus-placeholder">
-      <p><strong>Comments are not configured yet.</strong></p>
-      <p>
-        To turn on this guestbook, enable GitHub Discussions on
-        <code>{{ g.repo | default: site.github.repository_nwo }}</code>,
-        install the <a href="https://github.com/apps/giscus" rel="noopener">giscus app</a>,
-        visit <a href="https://giscus.app" rel="noopener">giscus.app</a> to grab the
-        <code>repo_id</code> and <code>category_id</code>, then drop them into
-        <code>_config.yml</code> and set <code>giscus.enabled: true</code>.
-      </p>
+      <p>{{ labels.comments_unavailable }}</p>
     </div>
   {% endif %}
 </div>
