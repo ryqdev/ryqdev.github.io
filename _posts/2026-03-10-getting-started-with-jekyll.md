@@ -3,6 +3,8 @@ title: "Getting Started with Jekyll"
 lang: en
 translation_key: getting-started-with-jekyll
 date: 2026-03-10
+last_modified_at: 2026-09-27
+tested_with: ["Jekyll 4.4.1", "Ruby 3.3.12"]
 description: "A beginner's guide to building a personal blog with Jekyll and GitHub Pages."
 tags: ["Jekyll", "GitHub Pages"]
 section: "Guides"

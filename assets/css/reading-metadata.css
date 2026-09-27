@@ -1,0 +1,6 @@
+.reading-metadata { flex-basis: 100%; order: 1; margin: .25rem 0 0; font-size: .8125rem; color: var(--color-text-muted); }
+.reading-metadata p { margin: 0; }
+.reading-metadata__summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem 1.25rem; }
+.reading-metadata__updated { display: inline-flex; flex-wrap: wrap; gap: .35rem; }
+.reading-metadata .reading-metadata__versions { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; margin-top: .75rem; }
+.reading-metadata__version { border: 1px solid var(--color-border); padding: .125rem .5rem; border-radius: .375rem; color: var(--color-text); font-size: .75rem; }

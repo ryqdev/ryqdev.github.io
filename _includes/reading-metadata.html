@@ -1,0 +1,22 @@
+{% assign reading_labels = site.data.reading_metadata[current_lang] %}
+{% assign word_count = include.content | strip_html | number_of_words: 'auto' %}
+{% assign reading_minutes = word_count | times: 1.0 | divided_by: reading_labels.words_per_minute | ceil | at_least: 1 %}
+{% if page.reading_minutes %}
+  {% assign reading_minutes = page.reading_minutes | ceil | at_least: 1 %}
+{% endif %}
+{% assign published_timestamp = page.date | date: '%s' | plus: 0 %}
+{% assign updated_timestamp = page.last_modified_at | date: '%s' | plus: 0 %}
+<link rel="stylesheet" href="{{ '/assets/css/reading-metadata.css' | relative_url }}">
+<div class="reading-metadata">
+  <p class="reading-metadata__summary">
+    <span class="reading-metadata__time">{{ reading_labels.approximately }} {{ reading_minutes }} {{ reading_labels.reading_time }}</span>
+    {% if page.last_modified_at and updated_timestamp > published_timestamp %}
+      <span class="reading-metadata__updated">{{ reading_labels.updated }} {% include post-date.html date=page.last_modified_at %}</span>
+    {% endif %}
+  </p>
+  {% if page.tested_with and page.tested_with.size > 0 %}
+    <p class="reading-metadata__versions"><span>{{ reading_labels.tested_with }}</span>
+      {% for version in page.tested_with %}<span class="reading-metadata__version">{{ version | escape }}</span>{% endfor %}
+    </p>
+  {% endif %}
+</div>
