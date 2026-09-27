@@ -33,7 +33,43 @@ section: "Guides"  # determines the sidebar group
 Posts are reachable at `/posts/<slug>/` (where `<slug>` is the
 filename's title portion).
 
-## Pages
+## Bilingual content
+
+English pages use `/` and `/posts/<slug>/`; Chinese pages use `/zh/` and
+`/zh/posts/<slug>/`. The header language switch opens the matching translation,
+including on article and About pages. Each home page lists only its own language.
+
+Keep the English post in `_posts/` and its Chinese translation in `_posts/zh/`.
+Both files need the same `translation_key` and date, with translated titles,
+descriptions, tags, and Markdown bodies. For example:
+
+```yaml
+# English front matter
+lang: en
+translation_key: a-quieter-workspace
+
+# Chinese front matter (in a separate file)
+lang: zh-CN
+translation_key: a-quieter-workspace
+permalink: /zh/posts/a-quieter-workspace/
+```
+
+Navigation, dates, and button labels live in `_data/i18n.yml`. Sample articles
+are marked `sample: true` and have comments disabled in both languages.
+
+## Article search
+
+Use the header search button or **Command K** (**Ctrl K** on Windows/Linux).
+Search matches titles, summaries, and full article text in the current site
+language. Title matches rank first; results show a highlighted excerpt and link
+to the article. Arrow keys select results, Enter opens one, and Escape closes
+the dialog.
+
+Jekyll generates `/search.json` from published posts on every build. Search runs
+locally in the browser with no external search service or additional dependency.
+Run the matching tests with `node --test _tests/search.test.cjs`.
+
+## Standalone pages
 
 Top-level pages (like `about.md`) sit at the repo root and use
 `layout: page` plus an explicit `permalink:`.

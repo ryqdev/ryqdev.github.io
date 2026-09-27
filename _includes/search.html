@@ -1,0 +1,24 @@
+<dialog id="search-dialog" class="search-dialog" aria-labelledby="search-title" data-index-url="{{ '/search.json' | relative_url }}">
+  <h2 id="search-title" class="visually-hidden">{{ labels.search.title }}</h2>
+  <div class="search-dialog__input-row">
+    {% include search-icon.html %}
+    <label for="search-input" class="visually-hidden">{{ labels.search.title }}</label>
+    <input id="search-input" class="search-input" type="search" placeholder="{{ labels.search.placeholder }}" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="160" aria-controls="search-results" autofocus>
+    <button type="button" id="search-close" class="search-close" aria-label="{{ labels.search.close }}" title="{{ labels.search.close }}"><kbd>Esc</kbd></button>
+  </div>
+  <div class="search-dialog__meta">
+    <p id="search-status" role="status" aria-live="polite" aria-atomic="true">{{ labels.js.search.recent }}</p>
+    <span>{{ labels.search.scope }}</span>
+  </div>
+  <div class="search-dialog__body">
+    <ul id="search-results" class="search-results" aria-label="{{ labels.search.title }}"></ul>
+    <p id="search-empty" class="search-empty" hidden>{{ labels.js.search.empty_hint }}</p>
+    <button type="button" id="search-retry" class="search-retry" hidden>{{ labels.search.retry }}</button>
+  </div>
+  <div class="search-dialog__footer">
+    <span><kbd>↑ ↓</kbd> {{ labels.search.choose }}</span>
+    <span><kbd>↵</kbd> {{ labels.search.open }}</span>
+    <span><kbd>Esc</kbd> {{ labels.search.dismiss }}</span>
+    <kbd class="search-dialog__shortcut" data-search-shortcut>⌘ K</kbd>
+  </div>
+</dialog>

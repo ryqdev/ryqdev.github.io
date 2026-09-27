@@ -2,18 +2,19 @@
 layout: default
 ---
 
+{% include locale.html %}
 <article>
-  <a href="{{ '/' | relative_url }}" class="back-link">
+  <a href="{{ labels.home_url | relative_url }}" class="back-link">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="15 18 9 12 15 6"></polyline>
     </svg>
-    Back to posts
+    {{ labels.back_to_posts }}
   </a>
 
   <h1 class="post-header__title">{{ page.title }}</h1>
 
   <div class="post-header__meta">
-    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    {% include post-date.html date=page.date %}
     {% if page.tags and page.tags.size > 0 %}
       <span class="post-header__dot">·</span>
       {% for tag in page.tags %}
@@ -28,7 +29,7 @@ layout: default
 
   {% unless page.comments == false %}
     <section class="post-comments">
-      <h2 class="post-comments__title">Comments</h2>
+      <h2 class="post-comments__title">{{ labels.comments }}</h2>
       {% include giscus.html %}
     </section>
   {% endunless %}

@@ -1,4 +1,5 @@
 (function () {
+  var strings = JSON.parse(document.getElementById("ui-strings").textContent);
   // ---------- Theme toggle ----------
   function syncThemeIcons() {
     var isDark = document.documentElement.classList.contains("dark");
@@ -8,7 +9,8 @@
     if (moon) moon.style.display = isDark ? "none" : "block";
     var btn = document.getElementById("theme-toggle");
     if (btn) {
-      btn.title = isDark ? "Switch to light mode" : "Switch to dark mode";
+      btn.title = isDark ? strings.light_mode : strings.dark_mode;
+      btn.setAttribute("aria-label", btn.title);
     }
   }
 
@@ -99,14 +101,19 @@
     btn.className = "copy-btn";
     btn.type = "button";
     btn.innerHTML = COPY_SVG;
-    btn.title = "Copy code";
+    btn.title = strings.copy;
+    btn.setAttribute("aria-label", strings.copy);
     btn.addEventListener("click", function () {
       var code = block.querySelector("code") || block;
       var text = code.innerText || code.textContent || "";
       navigator.clipboard.writeText(text).then(function () {
         btn.innerHTML = CHECK_SVG;
+        btn.title = strings.copied;
+        btn.setAttribute("aria-label", strings.copied);
         setTimeout(function () {
           btn.innerHTML = COPY_SVG;
+          btn.title = strings.copy;
+          btn.setAttribute("aria-label", strings.copy);
         }, 2000);
       });
     });

@@ -1,0 +1,12 @@
+---
+layout: default
+---
+{% include locale.html %}
+<h1 class="page-title">{{ labels.posts }}</h1>
+
+<div class="post-list">
+  {% assign sorted_posts = site.posts | where: 'lang', current_lang | sort: 'date' | reverse %}
+  {% for post in sorted_posts %}
+    {% include post-card.html post=post %}
+  {% endfor %}
+</div>

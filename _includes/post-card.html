@@ -10,7 +10,5 @@
   {% if include.post.description %}
     <p class="post-card__description">{{ include.post.description }}</p>
   {% endif %}
-  <time class="post-card__date" datetime="{{ include.post.date | date_to_xmlschema }}">
-    {{ include.post.date | date: "%B %-d, %Y" }}
-  </time>
+  {% include post-date.html date=include.post.date class='post-card__date' %}
 </a>

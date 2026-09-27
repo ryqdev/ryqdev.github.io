@@ -1,0 +1,19 @@
+{%- assign current_lang = page.lang | default: 'en' -%}
+{%- assign labels = site.data.i18n[current_lang] -%}
+{%- assign english_url = '/' -%}
+{%- assign chinese_url = '/zh/' -%}
+{%- if page.translation_key -%}
+  {%- assign documents = site.posts | concat: site.pages -%}
+  {%- assign translations = documents | where: 'translation_key', page.translation_key -%}
+  {%- assign english_page = translations | where: 'lang', 'en' | first -%}
+  {%- assign chinese_page = translations | where: 'lang', 'zh-CN' | first -%}
+  {%- assign english_url = english_page.url | default: '/' -%}
+  {%- assign chinese_url = chinese_page.url | default: '/zh/' -%}
+{%- endif -%}
+{%- if current_lang == 'zh-CN' -%}
+  {%- assign switch_url = english_url -%}
+  {%- assign switch_lang = 'en' -%}
+{%- else -%}
+  {%- assign switch_url = chinese_url -%}
+  {%- assign switch_lang = 'zh-CN' -%}
+{%- endif -%}
