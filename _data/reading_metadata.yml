@@ -1,0 +1,12 @@
+en:
+  updated: Updated
+  reading_time: min read
+  approximately: About
+  tested_with: Tested with
+  words_per_minute: 220
+zh-CN:
+  updated: 最后更新
+  reading_time: 分钟
+  approximately: 预计阅读
+  tested_with: 已验证版本
+  words_per_minute: 350

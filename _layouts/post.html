@@ -16,6 +16,7 @@ layout: default
 
   <div class="post-header__meta">
     {% include post-date.html date=page.date %}
+    {% include reading-metadata.html content=content %}
     {% if page.tags and page.tags.size > 0 %}
       <span class="post-header__dot">·</span>
       {% for tag in page.tags %}

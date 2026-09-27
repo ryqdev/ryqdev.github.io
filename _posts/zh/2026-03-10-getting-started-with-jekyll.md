@@ -4,6 +4,8 @@ lang: zh-CN
 translation_key: getting-started-with-jekyll
 permalink: /zh/posts/getting-started-with-jekyll/
 date: 2026-03-10
+last_modified_at: 2026-09-27
+tested_with: ["Jekyll 4.4.1", "Ruby 3.3.12"]
 description: "使用 Jekyll 和 GitHub Pages 搭建个人博客的入门指南。"
 tags: ["Jekyll", "GitHub Pages"]
 section: "指南"
