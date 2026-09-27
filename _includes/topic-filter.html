@@ -1,0 +1,11 @@
+{% assign topic_labels = site.data.topics[current_lang] %}
+{% assign topic_posts = site.posts | where: 'lang', current_lang %}
+{% assign topic_names = topic_posts | map: 'tags' | uniq | sort_natural %}
+<link rel="stylesheet" href="{{ '/assets/css/topics.css' | relative_url }}">
+<nav class="topic-filter" aria-label="{{ topic_labels.browse }}">
+  <a class="tag topic-link" href="{{ labels.home_url | relative_url }}"{% if page.translation_key == 'home' %} aria-current="page"{% endif %}>{{ topic_labels.all }}</a>
+  {% for topic_name in topic_names %}
+    {% include topic-link.html tag=topic_name %}
+  {% endfor %}
+  <a class="topic-filter__index" href="{{ topic_labels.url | relative_url }}"{% if page.translation_key == 'topics' %} aria-current="page"{% endif %}>{{ topic_labels.title }} ↗</a>
+</nav>

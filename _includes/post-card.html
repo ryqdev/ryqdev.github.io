@@ -1,14 +1,14 @@
-<a class="post-card" href="{{ include.post.url | relative_url }}">
+<article class="post-card">
   {% if include.post.tags and include.post.tags.size > 0 %}
     <div class="post-card__tags">
       {% for tag in include.post.tags %}
-        <span class="tag">{{ tag }}</span>
+        {% include topic-link.html tag=tag %}
       {% endfor %}
     </div>
   {% endif %}
-  <h2 class="post-card__title">{{ include.post.title }}</h2>
+  <h2 class="post-card__title"><a class="post-card__article-link" href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a></h2>
   {% if include.post.description %}
     <p class="post-card__description">{{ include.post.description }}</p>
   {% endif %}
   {% include post-date.html date=include.post.date class='post-card__date' %}
-</a>
+</article>

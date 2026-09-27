@@ -1,0 +1,3 @@
+{%- assign topic_labels = site.data.topics[current_lang] -%}
+{%- assign topic_id = include.tag | url_encode | prepend: 'topic-' -%}
+<a class="tag topic-link" href="{{ topic_labels.url | relative_url }}#{{ topic_id | url_encode }}">{{ include.tag | escape }}</a>

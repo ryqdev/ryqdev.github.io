@@ -1,0 +1,14 @@
+en:
+  title: Topics
+  intro: Explore articles by subject.
+  all: All posts
+  browse: Browse by topic
+  count: articles
+  url: /topics/
+zh-CN:
+  title: 主题
+  intro: 从感兴趣的主题开始阅读。
+  all: 全部文章
+  browse: 按主题浏览
+  count: 篇文章
+  url: /zh/topics/

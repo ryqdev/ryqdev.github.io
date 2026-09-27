@@ -1,0 +1,23 @@
+---
+layout: default
+---
+{% include locale.html %}
+{% assign topic_labels = site.data.topics[current_lang] %}
+<h1 class="page-title">{{ topic_labels.title }}</h1>
+<p class="page-lead">{{ topic_labels.intro }}</p>
+{% include topic-filter.html %}
+{% for topic_name in topic_names %}
+  {% assign topic_id = topic_name | url_encode | prepend: 'topic-' %}
+  {% assign matching_posts = topic_posts | where_exp: 'entry', 'entry.tags contains topic_name' | sort: 'date' | reverse %}
+  <section class="topic-group" id="{{ topic_id | escape }}" aria-labelledby="{{ topic_id | escape }}-title">
+    <div class="topic-group__heading">
+      <h2 id="{{ topic_id | escape }}-title">{{ topic_name | escape }}</h2>
+      <span>{{ matching_posts.size }} {{ topic_labels.count }}</span>
+    </div>
+    <ul class="topic-group__posts">
+      {% for post in matching_posts %}
+        <li><a href="{{ post.url | relative_url }}"><span>{{ post.title | escape }}</span>{% include post-date.html date=post.date %}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}

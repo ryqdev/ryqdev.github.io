@@ -3,6 +3,7 @@ layout: default
 ---
 
 {% include locale.html %}
+<link rel="stylesheet" href="{{ '/assets/css/topics.css' | relative_url }}">
 <article>
   <a href="{{ labels.home_url | relative_url }}" class="back-link">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -18,7 +19,7 @@ layout: default
     {% if page.tags and page.tags.size > 0 %}
       <span class="post-header__dot">·</span>
       {% for tag in page.tags %}
-        <span class="tag">{{ tag }}</span>
+        {% include topic-link.html tag=tag %}
       {% endfor %}
     {% endif %}
   </div>
