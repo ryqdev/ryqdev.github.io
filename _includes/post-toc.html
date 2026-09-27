@@ -1,0 +1,11 @@
+{% assign toc_labels = site.data.article_navigation[current_lang] %}
+<link rel="stylesheet" href="{{ '/assets/css/article-navigation.css' | relative_url }}">
+<aside class="post-toc" hidden aria-label="{{ toc_labels.contents }}">
+  <details class="post-toc__panel">
+    <summary>{{ toc_labels.contents }}</summary>
+    <nav aria-label="{{ toc_labels.contents }}"><ol class="post-toc__list"></ol></nav>
+  </details>
+</aside>
+<span id="section-link-status" class="visually-hidden" role="status" aria-live="polite"></span>
+<script id="article-navigation-strings" type="application/json">{{ toc_labels | jsonify }}</script>
+<script src="{{ '/assets/js/article-navigation.js' | relative_url }}" defer></script>

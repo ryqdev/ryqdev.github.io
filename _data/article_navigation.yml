@@ -1,0 +1,10 @@
+en:
+  contents: On this page
+  copy: Copy link to this section
+  copied: Section link copied
+  failed: Could not copy. Use the section link in your address bar.
+zh-CN:
+  contents: 本文目录
+  copy: 复制此章节链接
+  copied: 章节链接已复制
+  failed: 复制失败，请复制地址栏中的章节链接。

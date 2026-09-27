@@ -23,8 +23,11 @@ layout: default
     {% endif %}
   </div>
 
-  <div class="prose">
-    {{ content }}
+  <div class="post-reading-layout">
+    {% include post-toc.html %}
+    <div class="prose">
+      {{ content }}
+    </div>
   </div>
 
   {% unless page.comments == false %}
