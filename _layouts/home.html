@@ -3,8 +3,9 @@ layout: default
 ---
 {% include locale.html %}
 <h1 class="page-title">{{ labels.posts }}</h1>
+{% include topic-filter.html %}
 
-<div class="post-list">
+<div class="post-list" id="post-list">
   {% assign sorted_posts = site.posts | where: 'lang', current_lang | sort: 'date' | reverse %}
   {% for post in sorted_posts %}
     {% include post-card.html post=post %}
