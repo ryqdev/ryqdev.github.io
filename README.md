@@ -46,16 +46,15 @@ descriptions, tags, and Markdown bodies. For example:
 ```yaml
 # English front matter
 lang: en
-translation_key: a-quieter-workspace
+translation_key: my-post
 
 # Chinese front matter (in a separate file)
 lang: zh-CN
-translation_key: a-quieter-workspace
-permalink: /zh/posts/a-quieter-workspace/
+translation_key: my-post
+permalink: /zh/posts/my-post/
 ```
 
-Navigation, dates, and button labels live in `_data/i18n.yml`. Sample articles
-are marked `sample: true` and have comments disabled in both languages.
+Navigation, dates, and button labels live in `_data/i18n.yml`.
 
 ## Article search
 

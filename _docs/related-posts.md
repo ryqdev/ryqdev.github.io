@@ -9,12 +9,12 @@ before comments. Selection is deterministic:
 
 ```yaml
 related_posts:
-  - designing-a-reading-experience
-  - notes-on-the-small-web
+  - another-post-translation-key
+  - one-more-post-translation-key
 ```
 
 The same keys resolve to the current language's translations. Missing keys,
 duplicate picks, and the current article are skipped. When no other articles
 exist, the entire section is omitted. This is built with Liquid and works without
 JavaScript or custom plugins. Series navigation can be added when a real series
-exists; no arbitrary series order is assigned to the sample posts.
+exists.

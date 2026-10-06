@@ -1,12 +1,10 @@
 en:
-  title: Follow new articles
-  hint: Subscribe with your favorite RSS reader.
+  label: RSS subscriptions
   feed_title: ryqdev blog — English
   feed_url: /feed/en.xml
   other_lang: zh-CN
 zh-CN:
-  title: 订阅新文章
-  hint: 用你喜欢的 RSS 阅读器接收更新。
+  label: RSS 订阅
   feed_title: ryqdev blog — 中文
   feed_url: /feed/zh.xml
   other_lang: en

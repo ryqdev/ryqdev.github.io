@@ -3,12 +3,12 @@
 .topic-link:hover { color: var(--color-accent); border-color: var(--color-accent); }
 .post-filter[hidden], .post-card[hidden] { display: none; }
 .post-filter { scroll-margin-top: calc(var(--nav-height) + 1.5rem); }
-.post-filter .topic-filter { margin-bottom: .75rem; }
-.topic-filter__button { font-family: inherit; line-height: 1.5; padding: .375rem .75rem; border: 1px solid transparent; cursor: pointer; }
+.post-filter .topic-filter { gap: .375rem; margin: .75rem 0 .5rem; }
+.topic-filter__button { font-family: inherit; line-height: 1.5; padding: .1875rem .5rem; border: 1px solid transparent; cursor: pointer; }
 .topic-filter__button span { margin-left: .25rem; opacity: .65; font-variant-numeric: tabular-nums; }
 .topic-filter__button:hover { border-color: var(--color-text-muted); }
 .topic-filter__button[aria-pressed="true"] { background: var(--color-text); color: var(--color-cream); }
-.post-filter__status { color: var(--color-text-muted); font-size: .75rem; margin: 0 0 1rem; }
+.post-filter__status { color: var(--color-text-muted); font-size: .75rem; margin: 0 0 .75rem; }
 .topic-fallback a { color: var(--color-accent); }
 .topic-group { scroll-margin-top: calc(var(--nav-height) + 1.5rem); margin-top: 2.5rem; }
 .topic-group:target { border-top: 2px solid var(--color-accent); }

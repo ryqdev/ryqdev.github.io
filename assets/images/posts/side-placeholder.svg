@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet">
-  <rect width="400" height="260" fill="#f3f0e8" stroke="#e8e4db" stroke-width="2"/>
-  <g font-family="Inter, system-ui, sans-serif" text-anchor="middle">
-    <text x="200" y="120" font-size="26" font-weight="700" fill="#1a1a1a">Side image</text>
-    <text x="200" y="156" font-size="15" fill="#6b6b6b">float-right · text wraps</text>
-    <text x="200" y="180" font-size="13" fill="#d97706" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">{:.float-right}</text>
-  </g>
-</svg>

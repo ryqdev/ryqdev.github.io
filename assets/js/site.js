@@ -1,5 +1,23 @@
 (function () {
   var strings = JSON.parse(document.getElementById("ui-strings").textContent);
+  // ---------- RSS subscription menu ----------
+  var rssMenu = document.querySelector(".rss-menu");
+  if (rssMenu) {
+    document.addEventListener("click", function (event) {
+      if (!rssMenu.contains(event.target)) rssMenu.open = false;
+    });
+    rssMenu.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && rssMenu.open) {
+        rssMenu.open = false;
+        rssMenu.querySelector("summary").focus();
+        event.preventDefault();
+      }
+    });
+    rssMenu.addEventListener("focusout", function (event) {
+      if (!rssMenu.contains(event.relatedTarget)) rssMenu.open = false;
+    });
+  }
+
   // ---------- Theme toggle ----------
   function syncThemeIcons() {
     var isDark = document.documentElement.classList.contains("dark");

@@ -1,0 +1,14 @@
+{% assign subscription = site.data.subscriptions[current_lang] %}
+<details class="rss-menu">
+  <summary class="rss-menu__trigger" aria-label="{{ subscription.label }}" title="{{ subscription.label }}" aria-controls="rss-links">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+      <circle cx="5" cy="19" r="1" fill="currentColor" stroke="none"/>
+      <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/>
+    </svg>
+    <span class="rss-menu__label">RSS</span>
+  </summary>
+  <div class="rss-menu__links" id="rss-links">
+    <a href="{{ '/feed/zh.xml' | relative_url }}" type="application/atom+xml" hreflang="zh-CN" lang="zh-CN">中文 RSS <span aria-hidden="true">↗</span></a>
+    <a href="{{ '/feed/en.xml' | relative_url }}" type="application/atom+xml" hreflang="en" lang="en">English RSS <span aria-hidden="true">↗</span></a>
+  </div>
+</details>

@@ -51,17 +51,19 @@ class FeedsTest(unittest.TestCase):
                 dates.append(entry.findtext('a:published', namespaces=ATOM))
             self.assertEqual(dates, sorted(dates, reverse=True))
 
-    def test_discovery_prefers_current_language_and_footer_links_exist(self):
+    def test_discovery_prefers_current_language_and_subscription_links_exist(self):
         for lang, file in [('en', 'index.html'), ('zh-CN', 'zh/index.html')]:
             links = Links((SITE / file).read_text())
             self.assertEqual(links.feeds[0]['hreflang'], lang)
             self.assertEqual({link['hreflang'] for link in links.feeds}, {'en', 'zh-CN'})
-            footer = [a for a in links.anchors if a.get('type') == 'application/atom+xml']
-            self.assertEqual({a['hreflang'] for a in footer}, {'en', 'zh-CN'})
+            subscriptions = [a for a in links.anchors if a.get('type') == 'application/atom+xml']
+            self.assertEqual({a['hreflang'] for a in subscriptions}, {'en', 'zh-CN'})
 
     def test_existing_combined_feed_remains_available(self):
         root = ET.parse(SITE / 'feed.xml').getroot()
-        self.assertTrue(root.findall('a:entry', ATOM))
+        self.assertEqual(root.tag, '{' + ATOM['a'] + '}feed')
+        posts = json.loads((SITE / 'search.json').read_text())
+        self.assertEqual(bool(root.findall('a:entry', ATOM)), bool(posts))
 
 
 if __name__ == '__main__':

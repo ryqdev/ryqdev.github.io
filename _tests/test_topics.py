@@ -53,7 +53,11 @@ class TopicsTest(unittest.TestCase):
                 self.assertTrue(target.exists(), link['href'])
                 self.assertIn(unquote(url.fragment), Page(target.read_text()).ids)
                 checked += 1
-        self.assertGreater(checked, 20)
+        expected = 0
+        for prefix in ('', 'zh/'):
+            home = Page((SITE / prefix / 'index.html').read_text())
+            expected += len({tag for tags in home.cards for tag in tags})
+        self.assertEqual(checked, expected)
 
     def test_home_filters_and_article_tag_links_match_current_language(self):
         for prefix in ('', 'zh/'):
@@ -62,7 +66,9 @@ class TopicsTest(unittest.TestCase):
             tags = {tag for post_tags in home.cards for tag in post_tags}
             self.assertEqual({button['data-filter-tag'] for button in home.filters}, tags | {''})
             self.assertEqual(sum(button['aria-pressed'] == 'true' for button in home.filters), 1)
-            self.assertTrue(home.cards)
+            posts = json.loads((SITE / 'search.json').read_text())
+            lang = 'zh-CN' if prefix else 'en'
+            self.assertEqual(len(home.cards), sum(post['lang'] == lang for post in posts))
             files = [SITE / prefix / 'index.html', *(SITE / prefix / 'posts').rglob('index.html')]
             for file in files:
                 page = Page(file.read_text())
@@ -79,7 +85,11 @@ class TopicsTest(unittest.TestCase):
         for prefix in ('', 'zh/'):
             page = Page((SITE / prefix / 'topics/index.html').read_text())
             articles = [a['href'] for a in page.anchors if '/posts/' in a.get('href', '')]
-            self.assertTrue(articles)
+            home = Page((SITE / prefix / 'index.html').read_text())
+            card_links = [a['href'] for a in home.anchors
+                          if 'post-card__article-link' in a.get('class', '').split()]
+            expected = {url for url, tags in zip(card_links, home.cards) if tags}
+            self.assertEqual(set(articles), expected)
             self.assertTrue(all(url.startswith(BASE + '/' + prefix + 'posts/') for url in articles))
 
 
