@@ -40,7 +40,10 @@
     var url = new URL(window.location.href);
     if (tag) url.searchParams.set('tag', tag);
     else url.searchParams.delete('tag');
-    if (url.href !== window.location.href) window.history.pushState(null, '', url);
+    if (url.href !== window.location.href) {
+      window.history.pushState(null, '', url);
+      window.siteAnalytics?.track('topic_filter', { topic: tag || '(all)' });
+    }
     apply(tag);
   }
 

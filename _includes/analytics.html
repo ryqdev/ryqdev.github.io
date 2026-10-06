@@ -1,0 +1,14 @@
+{%- if jekyll.environment == 'production' and site.analytics.enabled == true and site.analytics.measurement_id and site.analytics.measurement_id != '' -%}
+  {%- assign analytics_article_id = '' -%}
+  {%- if page.layout == 'post' -%}
+    {%- assign analytics_article_id = page.translation_key | default: page.slug -%}
+  {%- endif -%}
+  <script id="analytics-config" type="application/json">{
+    "measurement_id": {{ site.analytics.measurement_id | jsonify | replace: '<', '\u003c' }},
+    "site_url": {{ site.url | jsonify | replace: '<', '\u003c' }},
+    "page_type": {{ page.layout | default: 'page' | jsonify | replace: '<', '\u003c' }},
+    "site_lang": {{ current_lang | jsonify | replace: '<', '\u003c' }},
+    "article_id": {{ analytics_article_id | jsonify | replace: '<', '\u003c' }}
+  }</script>
+  <script src="{{ '/assets/js/analytics.js' | relative_url }}" defer></script>
+{%- endif -%}

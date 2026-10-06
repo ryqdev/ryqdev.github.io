@@ -8,6 +8,7 @@ sitemap: false
   {
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | relative_url | jsonify }},
+    "article_id": {{ post.translation_key | default: post.slug | jsonify }},
     "lang": {{ post.lang | jsonify }},
     "date": {{ post.date | date_to_xmlschema | jsonify }},
     "description": {{ post.description | default: '' | jsonify }},

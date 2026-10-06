@@ -87,6 +87,10 @@
   var pending = null;
   var matches = [];
   var previousFocus = null;
+  var searchTimer = null;
+  var reportedQueries = new Set();
+  var renderedQuery = '';
+  var composing = false;
   var formatter = new Intl.DateTimeFormat(language, { year: "numeric", month: "long", day: "numeric" });
   var isApple = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
   var shortcut = isApple ? "⌘ K" : "Ctrl K";
@@ -109,9 +113,27 @@
     return fragment;
   }
 
+  function reportSearch() {
+    clearTimeout(searchTimer);
+    var query = termsFor(renderedQuery).join(' ');
+    if (!dialog.open || !posts || composing || !query || reportedQueries.has(query)) return;
+    reportedQueries.add(query);
+    // The query is used locally for deduplication, never sent to analytics.
+    window.siteAnalytics?.track('search_results', { result_count: matches.length });
+  }
+
+  function reportResult(post, index) {
+    reportSearch();
+    window.siteAnalytics?.track('search_result_click', {
+      target_article_id: post.article_id || post.url,
+      result_position: index + 1
+    });
+  }
+
   function render() {
-    if (!posts) return;
+    if (!posts || composing) return;
     var query = input.value.trim();
+    renderedQuery = query;
     var terms = termsFor(query);
     matches = searchPosts(posts, query, language);
     list.replaceChildren();
@@ -119,11 +141,15 @@
     empty.hidden = matches.length > 0;
     status.textContent = !query ? strings.recent : !matches.length ? strings.empty :
       matches.length === 1 ? strings.one : strings.count.replace("{count}", matches.length);
-    matches.forEach(function (post) {
+    matches.forEach(function (post, index) {
       var item = document.createElement("li");
       var link = document.createElement("a");
       link.className = "search-result";
       link.href = post.url;
+      link.addEventListener('click', function () { reportResult(post, index); });
+      link.addEventListener('auxclick', function (event) {
+        if (event.button === 1) reportResult(post, index);
+      });
       var title = document.createElement("h3");
       title.className = "search-result__title";
       title.appendChild(highlighted(post.title, terms));
@@ -139,6 +165,8 @@
       list.appendChild(item);
     });
     list.parentElement.scrollTop = 0;
+    clearTimeout(searchTimer);
+    if (window.siteAnalytics && dialog.open && query) searchTimer = setTimeout(reportSearch, 500);
   }
 
   function loadPosts() {
@@ -169,8 +197,11 @@
 
   function openSearch() {
     if (dialog.open) return;
+    composing = false;
+    reportedQueries.clear();
     previousFocus = document.activeElement;
     dialog.showModal();
+    window.siteAnalytics?.track('search_open');
     document.documentElement.classList.add("search-open");
     input.focus();
     input.select();
@@ -181,6 +212,8 @@
   document.getElementById("search-close").addEventListener("click", function () { dialog.close(); });
   retry.addEventListener("click", loadPosts);
   dialog.addEventListener("close", function () {
+    clearTimeout(searchTimer);
+    reportedQueries.clear();
     document.documentElement.classList.remove("search-open");
     if (previousFocus && previousFocus.isConnected) previousFocus.focus({ preventScroll: true });
   });
@@ -198,9 +231,17 @@
     }
   });
   input.addEventListener("input", function (event) {
+    clearTimeout(searchTimer);
     if (!event.isComposing) render();
   });
-  input.addEventListener("compositionend", render);
+  input.addEventListener('compositionstart', function () {
+    composing = true;
+    clearTimeout(searchTimer);
+  });
+  input.addEventListener('compositionend', function () {
+    composing = false;
+    render();
+  });
   dialog.addEventListener("keydown", function (event) {
     if (event.isComposing || event.keyCode === 229) return;
     if (event.key === "Escape") {
@@ -212,6 +253,7 @@
     var index = links.indexOf(document.activeElement);
     if (event.target === input && event.key === "Enter" && matches.length) {
       event.preventDefault();
+      reportResult(matches[0], 0);
       window.location.assign(matches[0].url);
     } else if (event.key === "ArrowDown" && links.length && (event.target === input || index !== -1)) {
       event.preventDefault();

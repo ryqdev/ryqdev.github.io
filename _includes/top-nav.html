@@ -11,7 +11,7 @@
       <span class="search-trigger__label">{{ labels.search.label }}</span>
       <kbd class="search-trigger__shortcut" data-search-shortcut aria-hidden="true">⌘ K</kbd>
     </button>
-    <a href="{{ switch_url | relative_url }}" hreflang="{{ switch_lang }}" class="language-switch" aria-label="{{ labels.switch_language }}" title="{{ labels.switch_language }}">
+    <a href="{{ switch_url | relative_url }}" hreflang="{{ switch_lang }}" class="language-switch" data-analytics-event="language_switch" aria-label="{{ labels.switch_language }}" title="{{ labels.switch_language }}">
       <span lang="zh-CN" class="language-switch__option{% if current_lang == 'zh-CN' %} is-active{% endif %}" aria-hidden="true">中文</span>
       <span lang="en" class="language-switch__option{% if current_lang == 'en' %} is-active{% endif %}" aria-hidden="true">EN</span>
     </a>

@@ -73,6 +73,15 @@ Run the matching tests with `node --test _tests/search.test.cjs`.
 Top-level pages (like `about.md`) sit at the repo root and use
 `layout: page` plus an explicit `permalink:`.
 
+## Analytics
+
+Optional GA4 analytics covers page views, article progress, search, successful
+code copies, topic filters, related articles, RSS clicks, and language changes.
+The configured tracker only runs in production on the HTTPS origin in
+`_config.yml`. Set `analytics.enabled: false` to disable it. See
+[_docs/analytics.md](_docs/analytics.md) for setup, required
+GA4 data-stream settings, the event contract, reports, and verification.
+
 ## Project structure
 
 ```
@@ -99,5 +108,22 @@ ryqdev.github.io/
 
 ## Deploying
 
-Pushing to `main` triggers GitHub Pages' built-in Jekyll build. No extra
-workflow needed.
+The [Pages workflow](.github/workflows/pages.yml) builds and publishes pushes to
+`main`. It can also be run manually from the Actions tab. In **Settings → Pages**,
+the publishing source must be **GitHub Actions**.
+
+The workflow uses Ruby 3.4 and the dependencies in `Gemfile.lock`, builds with
+`JEKYLL_ENV=production`, runs the JavaScript and Python tests, and only deploys
+after they pass. The site is published at <https://ryqdev.github.io/>.
+
+To reproduce the build and checks locally:
+
+```bash
+bundle install
+JEKYLL_ENV=production bundle exec jekyll build
+node --test _tests/*.test.cjs
+python3 -m unittest discover -s _tests -p 'test_*.py'
+```
+
+Commit `Gemfile.lock` when updating gems so local and hosted builds use the same
+versions. Analytics configuration is documented in [_docs/analytics.md](_docs/analytics.md).

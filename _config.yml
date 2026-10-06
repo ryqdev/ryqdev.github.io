@@ -5,6 +5,12 @@ lang: en
 url: "https://ryqdev.github.io"
 baseurl: ""
 
+# Required data-stream settings are documented in _docs/analytics.md.
+# The tracker only runs in production on the HTTPS origin in `url` above.
+analytics:
+  enabled: true
+  measurement_id: "G-6DEFVY1FJ8"
+
 permalink: /posts/:slug/
 
 markdown: kramdown

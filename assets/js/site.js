@@ -103,6 +103,7 @@
   var blocks = document.querySelectorAll(
     ".prose pre, .prose div.highlight, .prose figure.highlight"
   );
+  var codeBlock = 0;
   blocks.forEach(function (block) {
     // Rouge wraps code in <div class="highlight"><pre>…</pre></div>; the
     // selector matches both layers, so skip the inner <pre> when an outer
@@ -115,6 +116,7 @@
       return;
     }
     if (block.querySelector(":scope > .copy-btn")) return;
+    var codeIndex = ++codeBlock;
     var btn = document.createElement("button");
     btn.className = "copy-btn";
     btn.type = "button";
@@ -125,6 +127,7 @@
       var code = block.querySelector("code") || block;
       var text = code.innerText || code.textContent || "";
       navigator.clipboard.writeText(text).then(function () {
+        window.siteAnalytics?.track('code_copy', { code_block: codeIndex });
         btn.innerHTML = CHECK_SVG;
         btn.title = strings.copied;
         btn.setAttribute("aria-label", strings.copied);
@@ -133,7 +136,7 @@
           btn.title = strings.copy;
           btn.setAttribute("aria-label", strings.copy);
         }, 2000);
-      });
+      }).catch(function () { /* Keep the copy button unchanged when copying fails. */ });
     });
     block.appendChild(btn);
   });

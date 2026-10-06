@@ -43,7 +43,7 @@
     <p class="related-posts__intro">{{ related_labels.intro }}</p>
     <ul>
       {% for related_post in selected_posts %}
-        <li><a href="{{ related_post.url | relative_url }}">
+        <li><a href="{{ related_post.url | relative_url }}" data-analytics-event="related_post_click" data-article-id="{{ related_post.translation_key | default: related_post.slug | escape }}">
           <h3>{{ related_post.title | escape }}</h3>
           {% if related_post.description %}<p>{{ related_post.description | escape }}</p>{% endif %}
           {% include post-date.html date=related_post.date %}
