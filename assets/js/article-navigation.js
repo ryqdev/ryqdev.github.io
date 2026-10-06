@@ -50,7 +50,7 @@
   if (headings.length < 2) return;
   toc.hidden = false;
   var panel = toc.querySelector('details');
-  var wide = window.matchMedia('(min-width: 1200px)');
+  var wide = window.matchMedia('(min-width: 900px)');
   function syncPanel() {
     panel.open = wide.matches;
     var summary = panel.querySelector('summary');

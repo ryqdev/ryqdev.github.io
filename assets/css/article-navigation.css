@@ -12,10 +12,14 @@
 .heading-permalink { display: inline-flex; vertical-align: middle; align-items: center; justify-content: center; margin-left: .4rem; width: 1.75rem; height: 1.75rem; font-size: 1rem; font-weight: 400; opacity: .35; }
 .prose :is(h2, h3):hover .heading-permalink, .heading-permalink:focus-visible { opacity: 1; }
 .post-toc a:focus-visible, .post-toc summary:focus-visible, .heading-permalink:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: .125rem; }
-@media (min-width: 1200px) {
-  .main__inner:has(.post-toc:not([hidden])) { max-width: 68rem; padding-right: 20rem; }
-  .post-toc { position: absolute; left: calc(100% + 2.5rem); top: 0; bottom: 0; width: 15rem; margin: 0; }
+@media (min-width: 900px) {
+  .main__inner:has(.post-toc:not([hidden])) { max-width: 65rem; padding-right: 17rem; }
+  .post-toc { position: absolute; left: calc(100% + 2rem); top: 0; bottom: 0; width: 13rem; margin: 0; }
   .post-toc__panel { position: sticky; top: calc(var(--nav-height) + 1.5rem); max-height: calc(100vh - var(--nav-height) - 3rem); overflow-y: auto; border: 0; border-left: 1px solid var(--color-border); border-radius: 0; padding: 0 0 0 1rem; }
   .post-toc summary { list-style: none; pointer-events: none; }
   .post-toc summary::-webkit-details-marker { display: none; }
+}
+@media (min-width: 1200px) {
+  .main__inner:has(.post-toc:not([hidden])) { max-width: 68rem; padding-right: 20rem; }
+  .post-toc { left: calc(100% + 2.5rem); width: 15rem; }
 }
